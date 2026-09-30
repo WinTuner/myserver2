@@ -1,8 +1,11 @@
 name: main
 on: [push]
 jobs:
-  build:
+  print-text:
     runs-on: ubuntu-latest
     steps:
-      - name: test
-        run: echo "test"
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: print text from index.js
+        run: cat dist/index.js
