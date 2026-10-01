@@ -10,5 +10,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Run test  
-        run: node dist/Test1.js
+      - name: Install deps
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Unit test
+        run: npm run test:unit
+      - name: Integration test
+        run: npm run test:integration

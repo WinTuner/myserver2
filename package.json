@@ -1,0 +1,23 @@
+{
+  "name": "myserver2",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "npm run test:unit && npm run test:integration",
+    "test:unit": "tsx Test/Test1.ts",
+    "test:integration": "NODE_ENV=test tsx Test/IntegrationTest.ts"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.7.4",
+    "nodemon": "^3.1.14",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.2"
+  }
+}
