@@ -10,4 +10,4 @@ jobs:
     runs-on:  ubuntu-latest
     steps:
       - name: test_workflow2
-        run: echo "test"
+        run: echo "hello world"
