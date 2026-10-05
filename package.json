@@ -17,7 +17,6 @@
     "mongoose": "^9.10.4"
   },
   "devDependencies": {
-    "@esbuild/win32-x64": "^0.28.2",
     "@types/cors": "^2.8.19",
     "@types/express": "^4.17.21",
     "@types/node": "^22.7.4",
