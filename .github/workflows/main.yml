@@ -13,5 +13,16 @@ jobs:
       with:
         node-version: '24'
 
+    - name: Install deps
+      run: npm ci
+
+    - name: Build
+      run: npm run build
+
     - name: Run Test1
       run: node dist/Test1.js
+
+    - name: Run API test
+      run: npm run test:api
+      env:
+        MONGODB_URI: ${{ secrets.MONGODB_URI }}

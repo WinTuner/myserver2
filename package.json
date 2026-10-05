@@ -6,8 +6,9 @@
     "dev": "tsx watch src/index.ts",
     "build": "node node_modules/typescript/bin/tsc && node scripts/build-test.js",
     "start": "node dist/index.js",
-    "test": "npm run test:unit",
-    "test:unit": "tsx Test/Test1.ts"
+    "test": "npm run test:unit && npm run test:api",
+    "test:unit": "tsx Test/Test1.ts",
+    "test:api": "tsx Test/ApiTest.ts"
   },
   "dependencies": {
     "cors": "^2.8.6",
