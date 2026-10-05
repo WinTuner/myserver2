@@ -9,5 +9,5 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-      - name: Print workflow4
-        run: echo "workflow4"
+    - name: print_workflow4
+      run: echo "workflow 4"

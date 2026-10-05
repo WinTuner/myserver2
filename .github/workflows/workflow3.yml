@@ -9,8 +9,5 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Cat file index.js
-        run: cat dist/index.js
+    - name: print_workflow3
+      run: echo "workflow 3"

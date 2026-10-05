@@ -2,12 +2,12 @@ name: workflow2
 on:
   workflow_run:
     workflows: ["main"]
-    types: 
+    types:
       - completed
 
 jobs:
   job1:
-    runs-on:  ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
-      - name: test_workflow2
-        run: echo "hello world"
+    - name: print_workflow2
+      run: echo "workflow 2"

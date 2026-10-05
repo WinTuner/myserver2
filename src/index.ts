@@ -1,37 +1,50 @@
+import 'dotenv/config';
+import dns from 'node:dns';
+dns.setServers(['1.1.1.1', '8.8.8.8']);
+
 import express from 'express';
-import { add } from './add';
-import { order } from './order';
+import mongoose from 'mongoose';
+import UserRoutes from './UserRoutes';
+import cors from 'cors';
+import path from 'node:path';
 
 export const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middleware
+app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '../public')));
 
-app.get('/', (_req, res) => {
-  res.send('Hello World');
-});
+// Routes
+app.use('/api', UserRoutes);
 
-app.get('/api/add', (req, res) => {
-  const a = Number(req.query.a);
-  const b = Number(req.query.b);
-  if (!Number.isFinite(a) || !Number.isFinite(b)) {
-    res.status(400).json({ error: 'a and b must be numbers' });
-    return;
-  }
-  res.json(add(a, b));
-});
-
-app.post('/api/orders', (req, res) => {
-  const { items, discountPct = 0, vatPct = 0 } = req.body ?? {};
-  if (!Array.isArray(items) || items.length === 0) {
-    res.status(400).json({ error: 'items must be non-empty' });
-    return;
-  }
-  res.json(order(items, discountPct, vatPct));
-});
-
-app.use((_req, res) => {
-  res.status(404).send('Not Found');
-});
-
-if (process.env.NODE_ENV !== 'test') {
-  app.listen(3000, () => console.log('up 3000'));
+const uri = process.env.MONGODB_URI;
+if (!uri && process.env.NODE_ENV !== 'test') {
+  console.error('MONGODB_URI missing. Set it in .env or environment.');
 }
+
+// Connect to MongoDB
+if (!uri) {
+  if (process.env.NODE_ENV !== 'test') {
+    app.listen(PORT, () => {
+      console.log(`Server running on port http://localhost:${PORT} (no DB: MONGODB_URI missing)`);
+    });
+  }
+} else {
+  mongoose
+    .connect(uri, {})
+    .then(() => {
+      console.log('Connected to MongoDB');
+      if (process.env.NODE_ENV !== 'test') {
+        app.listen(PORT, () => {
+          console.log(`Server is running on port http://localhost:${PORT}`);
+        });
+      }
+    })
+    .catch((error) => {
+      console.error('Error connecting to MongoDB:', error);
+    });
+}
+
+export default app;

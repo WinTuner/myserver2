@@ -4,16 +4,20 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "tsc",
+    "build": "node node_modules/typescript/bin/tsc && node scripts/build-test.js",
     "start": "node dist/index.js",
-    "test": "npm run test:unit && npm run test:integration",
-    "test:unit": "tsx Test/Test1.ts",
-    "test:integration": "NODE_ENV=test tsx Test/IntegrationTest.ts"
+    "test": "npm run test:unit",
+    "test:unit": "tsx Test/Test1.ts"
   },
   "dependencies": {
-    "express": "^4.19.2"
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.5",
+    "express": "^4.19.2",
+    "mongoose": "^9.10.4"
   },
   "devDependencies": {
+    "@esbuild/win32-x64": "^0.28.2",
+    "@types/cors": "^2.8.19",
     "@types/express": "^4.17.21",
     "@types/node": "^22.7.4",
     "nodemon": "^3.1.14",

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>myserver2 - Users</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main id="app">
+    <h1>Users</h1>
+    <p id="status">ready</p>
+
+    <section>
+      <h2 id="form-title">Add user</h2>
+      <form id="user-form">
+        <input id="user-id" type="hidden" />
+        <label>Name <input id="user-name" type="text" required autocomplete="off" /></label>
+        <label>Email <input id="user-email" type="email" required autocomplete="off" /></label>
+        <label>Password <input id="user-password" type="password" required minlength="6" /></label>
+        <button id="submit-btn" type="submit">Add</button>
+        <button id="cancel-btn" type="button" hidden>Cancel</button>
+      </form>
+      <output id="form-out"></output>
+    </section>
+
+    <section>
+      <h2>All users</h2>
+      <button id="users-btn">Refresh</button>
+      <ul id="users-out"></ul>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
