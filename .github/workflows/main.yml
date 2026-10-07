@@ -3,6 +3,8 @@ on: [push]
 jobs:
   job1:
     runs-on: ubuntu-latest
+    env:
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
     steps:
     - name: Checkout code
@@ -23,7 +25,5 @@ jobs:
       run: node dist/Test1.js
 
     - name: Run API test
-      if: ${{ secrets.MONGODB_URI != '' }}
+      if: ${{ env.MONGODB_URI != '' }}
       run: npm run test:api
-      env:
-        MONGODB_URI: ${{ secrets.MONGODB_URI }}
