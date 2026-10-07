@@ -23,6 +23,7 @@ jobs:
       run: node dist/Test1.js
 
     - name: Run API test
+      if: ${{ secrets.MONGODB_URI != '' }}
       run: npm run test:api
       env:
         MONGODB_URI: ${{ secrets.MONGODB_URI }}
